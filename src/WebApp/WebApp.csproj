@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Connect to Azure Table Storage (or) Azure CosmosDB -->
+    <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="2.0.0-preview" />
+  </ItemGroup>
+
+</Project>
