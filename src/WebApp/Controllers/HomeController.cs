@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApp.Models;
+using WebApp.Services;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ISpiritService spiritService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ISpiritService spiritService)
         {
             _logger = logger;
+            this.spiritService = spiritService;
         }
 
         public IActionResult Index()
@@ -26,6 +30,40 @@ namespace WebApp.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Retrieve list of all spirits.
+        /// </summary>
+        /// <remarks>
+        ///     Dapper is used while retrieving data from DB.
+        /// </remarks>
+        /// <returns>list of Spirit objects</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [HttpGet("dapper/spirits")]
+        public IActionResult GetSpiritsByDapper()
+        {
+            var spirits = spiritService.GetSpiritsByDapper();
+
+            if (spirits.Any())
+                return Ok(spirits);
+
+            return new NoContentResult();
+        }
+
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [HttpGet("ef/spirits")]
+        public IActionResult GetSpiritsByEf()
+        {
+            var spirits = spiritService.GetSpiritsByEf();
+
+            if (spirits.Any())
+                return Ok(spirits);
+
+            return new NoContentResult();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
