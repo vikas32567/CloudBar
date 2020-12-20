@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <!-- EF Core -->
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+
     <!-- Connect to Azure Table Storage (or) Azure CosmosDB -->
     <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="2.0.0-preview" />
   </ItemGroup>
