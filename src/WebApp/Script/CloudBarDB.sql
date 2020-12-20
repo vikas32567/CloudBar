@@ -132,6 +132,8 @@ CREATE TABLE [dbo].[UserOrders]
     [UserId] BIGINT NOT NULL,
     [OrderId] BIGINT NOT NULL,
 
+    [Create] DATETIME NOT NULL DEFAULT GETDATE(),
+
     CONSTRAINT [FK_UserOrders_Users] FOREIGN KEY ([UserId]) REFERENCES [Users]([Id]),
     CONSTRAINT [FK_UserOrders_Orders] FOREIGN KEY ([OrderId]) REFERENCES [Orders]([Id])
 )
@@ -161,7 +163,6 @@ VALUES
 ('Vat 69 Blended Scotch Whisky',272.666666666667,100000),
 ('Blenders Pride Reserve Collection Whisky',178,100000)
 
-SELECT * from Spirits
 
 INSERT INTO Drinks (Name, Quntity, OverheadCost)
 VALUES
@@ -185,8 +186,6 @@ VALUES
 ('Whisky(60ml) - Blenders Pride Reserve Collection', 60, 40),
 ('Whisky(90ml) - Blenders Pride Reserve Collection', 90, 50)
 
-select * from Drinks
-select * from Spirits
 
 INSERT INTO Recipes ([DrinkId], [SpiritId], [Percentage])
 VALUES
@@ -206,6 +205,10 @@ VALUES
 (14,10,100),
 (15,10,100)
 
+
+-- SELECT * from Spirits
+
+-- select * from Drinks
 
 -- select d.Name, s.Name, d.Quntity from Drinks d 
 -- inner join Recipes r on r.DrinkId = d.Id
