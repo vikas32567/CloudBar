@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Context
 {
+    [Table("Users")]
     public class User
     {
         public long Id { get; set; }
