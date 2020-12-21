@@ -44,6 +44,7 @@ namespace WebApp.Controllers
         [HttpGet("dapper/spirits")]
         public IActionResult GetSpiritsByDapper()
         {
+            _logger.LogDebug("Fetching spirits by dapper.");
             var spirits = spiritService.GetSpiritsByDapper();
 
             if (spirits.Any())
@@ -58,6 +59,7 @@ namespace WebApp.Controllers
         [HttpGet("ef/spirits")]
         public IActionResult GetSpiritsByEf()
         {
+            _logger.LogDebug("Fetching spirits by EF Core.");
             var spirits = spiritService.GetSpiritsByEf();
 
             if (spirits.Any())

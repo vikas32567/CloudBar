@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Repositories;
 using WebApp.Services;
+using Serilog;
 
 namespace WebApp
 {
@@ -56,6 +57,8 @@ namespace WebApp
                 c.IncludeXmlComments(xmlPath);
             });
 
+            
+
             // Register Repos
             services.AddTransient<IDapperDrinkRepo, DapperDrinkRepo>();
             services.AddTransient<IDapperSpiritRepo, DapperSpiritRepo>();
@@ -79,6 +82,8 @@ namespace WebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // app.UseSerilogRequestLogging();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
