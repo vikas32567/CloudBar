@@ -11,7 +11,7 @@ namespace WebApp.Context
         public DbSet<Drink> Drinks { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Spirit> Spirits { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOrder> UserOrders { get; set; }
@@ -30,7 +30,7 @@ namespace WebApp.Context
                 entity.Property(oi => oi.Price).HasColumnType<double>("DECIMAL(10,2)");
             });
 
-            modelBuilder.Entity<Recipe>(entity => {
+            modelBuilder.Entity<Ingredient>(entity => {
                 entity.Property(r => r.Percentage).IsRequired();
             });
 

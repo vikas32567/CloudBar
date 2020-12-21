@@ -75,7 +75,7 @@ CREATE TRIGGER [dbo].[Trigger_Drinks]
 GO
 
 
-CREATE TABLE [dbo].[Recipes]
+CREATE TABLE [dbo].[Ingredients]
 (
 	[Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1, 1),
     [DrinkId] BIGINT NOT NULL,
@@ -84,18 +84,18 @@ CREATE TABLE [dbo].[Recipes]
     [Created] DATETIME NOT NULL DEFAULT GETDATE(),
     [Modified] DATETIME NULL,
 
-    CONSTRAINT [FK_Recipes_Spirits] FOREIGN KEY ([SpiritId]) REFERENCES [Spirits]([Id]),
-    CONSTRAINT [FK_Recipes_Drinks] FOREIGN KEY ([DrinkId]) REFERENCES [Drinks]([Id])
+    CONSTRAINT [FK_Ingredients_Spirits] FOREIGN KEY ([SpiritId]) REFERENCES [Spirits]([Id]),
+    CONSTRAINT [FK_Ingredients_Drinks] FOREIGN KEY ([DrinkId]) REFERENCES [Drinks]([Id])
 )
 
 GO
 
-CREATE TRIGGER [dbo].[Trigger_Recipes]
-    ON [dbo].[Recipes]
+CREATE TRIGGER [dbo].[Trigger_Ingredients]
+    ON [dbo].[Ingredients]
     FOR UPDATE
     AS
     BEGIN
-        UPDATE Recipes SET Modified = GETDATE()
+        UPDATE Ingredients SET Modified = GETDATE()
 		where Id in 
 		(select distinct Id from Inserted)
     END
@@ -145,7 +145,7 @@ GO
 -- DROP TABLE Users
 -- DROP TABLE OrderItems
 -- DROP TABLE Orders
--- DROP TABLE Recipes
+-- DROP TABLE Ingredients
 -- DROP TABLE Drinks
 -- DROP TABLE Spirits
 
@@ -187,7 +187,7 @@ VALUES
 ('Whisky(90ml) - Blenders Pride Reserve Collection', 90, 50)
 
 
-INSERT INTO Recipes ([DrinkId], [SpiritId], [Percentage])
+INSERT INTO Ingredients ([DrinkId], [SpiritId], [Percentage])
 VALUES
 (1,2,100),
 (2,2,100),
@@ -211,5 +211,5 @@ VALUES
 -- select * from Drinks
 
 -- select d.Name, s.Name, d.Quntity from Drinks d 
--- inner join Recipes r on r.DrinkId = d.Id
+-- inner join Ingredients r on r.DrinkId = d.Id
 -- inner join Spirits s on s.id = r.SpiritId
