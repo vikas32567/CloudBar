@@ -13,6 +13,9 @@ To be integrated:
   3. Serilog
   4. Automapper
   5. AspNetCore.Diagnostics.HealthChecks
+  6. Hotjar
+  7. FontAwesome
+  8. Bootstrap
   
 Developed with ♥
 <br/>
