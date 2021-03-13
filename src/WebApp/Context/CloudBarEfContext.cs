@@ -19,23 +19,26 @@ namespace WebApp.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Drink>(entity => {
-                entity.Property(d => d.OverheadCost).HasColumnType<double>("DECIMAL(10,2)");
+                entity.Property(d => d.OverheadCost).HasColumnType<decimal>("DECIMAL(10,2)");
+                entity.Property(d => d.Created).HasColumnType("datetime").HasDefaultValueSql("getdate()");
             });
 
             modelBuilder.Entity<Order>(entity => {
-                entity.Property(o => o.Price).HasColumnType<double>("DECIMAL(10,2)");
+                entity.Property(o => o.Price).HasColumnType<decimal>("DECIMAL(10,2)");
             });
 
             modelBuilder.Entity<OrderItem>(entity => {
-                entity.Property(oi => oi.Price).HasColumnType<double>("DECIMAL(10,2)");
+                entity.Property(oi => oi.Price).HasColumnType<decimal>("DECIMAL(10,2)");
             });
 
             modelBuilder.Entity<Ingredient>(entity => {
                 entity.Property(r => r.Percentage).IsRequired();
+                entity.Property(d => d.Created).HasColumnType("datetime").HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<Spirit>(entity => {
-                entity.Property(p => p.Price).HasColumnType<double>("DECIMAL(10,2)");
+                entity.Property(p => p.Price).HasColumnType<decimal>("DECIMAL(10,2)");
+                entity.Property(d => d.Created).HasColumnType("datetime").HasDefaultValueSql("GETDATE()");
             });
 
             modelBuilder.Entity<User>(entity => {

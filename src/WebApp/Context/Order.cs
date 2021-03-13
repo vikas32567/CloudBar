@@ -7,7 +7,7 @@ namespace WebApp.Context
     public class Order
     {
         public long Id { get; set; }
-        public double Price { get; set; }        
+        public decimal Price { get; set; }        
 
         public DateTime Created { get; set; }
     }
