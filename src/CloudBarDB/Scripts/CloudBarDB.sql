@@ -87,7 +87,7 @@ BEGIN
     (
         [Id] BIGINT NOT NULL PRIMARY KEY IDENTITY(1, 1),
         [Name] NVARCHAR(100) NOT NULL UNIQUE,
-        [Quntity] INT NOT NULL DEFAULT 30,
+        [Quantity] INT NOT NULL DEFAULT 30,
         [Description] NVARCHAR(256) NULL,
         [OverheadCost] DECIMAL(10, 2) NOT NULL DEFAULT 0,
         [Created] DATETIME NOT NULL DEFAULT GETDATE(),
