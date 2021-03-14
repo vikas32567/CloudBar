@@ -14,7 +14,7 @@ namespace WebApp.Repositories
 
         public DapperDrinkRepo(IConfiguration _config)
         {
-            connectionString = _config.GetConnectionString("ConnectionStrings:SqlDatabase");
+            connectionString = _config.GetConnectionString("SqlDatabase");
         }
 
         public List<Drink> GetDrinks()

@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApp.Context
 {
-    [Table("Drink")]
+    [Table("Drinks")]
     public class Drink
     {
         public long Id { get; set; }
@@ -14,5 +15,7 @@ namespace WebApp.Context
 
         public DateTime Created { get; set; }
         public DateTime? Modified { get; set; }
+
+        public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     }
 }

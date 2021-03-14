@@ -1,0 +1,40 @@
+@model List<WebApp.ViewModels.DrinkViewModel>
+
+<div class="row py-4">
+    <div class="col-12">
+        <div class="display-4">All Drinks</div>
+    </div>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Overhead cost</th>
+            <th scope="col">Spirits</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var drink in Model)
+        {
+            <tr>
+                <th scope="row">@drink.Id</th>
+                <td>@drink.Name</td>
+                <td>@drink.Description</td>
+                <td>@drink.Quantity</td>
+                <td>@drink.OverheadCost</td>
+                <td>
+                    <ol>
+                        @foreach (var ingredient in drink.Ingredients)
+                        {
+                            <div>@ingredient.Percentage % - @ingredient.SpiritId</div>
+                        }
+                    </ol>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
